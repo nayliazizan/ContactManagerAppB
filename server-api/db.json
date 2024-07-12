@@ -1,0 +1,39 @@
+{
+  "contacts": [
+    {
+      "id": "b99d8154-bbbf-4477-9593-e17b4f12a681",
+      "name": "David Brown",
+      "email": "david.brown@example.com"
+    },
+    {
+      "id": "a4b571e9-997f-4caf-843e-152b85edec1d",
+      "name": "Alice Johnson",
+      "email": "alice.johnson@gmail.com"
+    },
+    {
+      "id": "2b6bb061-06b1-409f-8081-dd197ed897a4",
+      "name": "Bob Smith",
+      "email": "bob.smith@yahoo.com"
+    },
+    {
+      "id": "4f5406fe-0486-4c11-ad45-a7147fb4ef16",
+      "name": "Carol Williams",
+      "email": "carol.williams@yahoo.com"
+    },
+    {
+      "id": "50a58fde-8ec0-4e19-ab97-21177c73fb64",
+      "name": "Eve Davis",
+      "email": "eve.davis@gmail.com"
+    },
+    {
+      "id": "53f4ee04-05e8-4358-8555-3681fbd77c64",
+      "name": "Farhana",
+      "email": "fhsh16@gmail.com"
+    },
+    {
+      "id": "8cb60128-1386-4129-8be0-855a60ba7754",
+      "name": "Taylor Swift",
+      "email": "ts13@gmail.com"
+    }
+  ]
+}
