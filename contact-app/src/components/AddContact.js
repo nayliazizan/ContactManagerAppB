@@ -1,40 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import { useContactCrud } from "../context/ContactsCrudContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-class AddContact extends React.Component {
-    //define state (initially)
-    state = {
-        name: "",
-        email: ""
-    }
+const AddContact = () => {
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const {addContactHandler} = useContactCrud();
+    const navigate = useNavigate();
 
     //handle form submission. display error msg if the field blank
-    add = (e) => {
+    const add = (e) => {
         e.preventDefault(); //prevent reload page after add
-        if (this.state.name === "" || this.state.email === "") {
+        if (name === "" || email === "") {
             alert("All the fields are mandatory!");
             return;
         }
-        this.props.addContactHandler(this.state);
-        this.setState({name:"", email:""}) //reset form state afer submit
-        ////add this so that after we click add button, 
-        //the page will save the data and direct us to 
-        //contactlist page
-        this.props.history.push("/"); 
+        addContactHandler({name, email});
+        setName("");
+        setEmail("");
+        navigate("/");
     }
 
-    render() {
+    
         return (
             <div className="ui main main-content">
                 <h2>Add Contact</h2>
-                <form className="ui form" onSubmit={this.add}>
+                <form className="ui form" onSubmit={add}>
                     <div className="field">
                         <label>Name: </label>
                         <input 
                             type="text" 
                             name="name" 
                             placeholder="Name"
-                            value={this.state.name} 
-                            onChange={(e)=> this.setState({name: e.target.value})}
+                            value={name} 
+                            onChange={(e)=> setName(e.target.value)}
                         />
                     </div>
                     <div className="field">
@@ -43,15 +43,15 @@ class AddContact extends React.Component {
                             type="text" 
                             name="email" 
                             placeholder="Email"
-                            value={this.state.email} 
-                            onChange={(e)=> this.setState({email: e.target.value})}
+                            value={email} 
+                            onChange={(e)=> setEmail(e.target.value)}
                         />
                     </div>
                     <button className="ui button blue" ><i className="plus square icon"></i>Add</button>
+                    <Link to="/"><button className="ui button blue center">Back to Home</button></Link>
                 </form>
             </div>
         );
-    }
 }
 
 export default AddContact;

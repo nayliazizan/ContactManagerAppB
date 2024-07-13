@@ -1,6 +1,6 @@
 import React from "react";
 import user from "../images/man.png"
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link } from "react-router-dom";
 
 function ContanctCard(props) {
     const {id, name, email} = props.contact;
@@ -13,13 +13,13 @@ function ContanctCard(props) {
                         <div>{email}</div>
                     </Link>
                 </div>
-                <Link to={{pathname:`contact/delete/${id}`, state:{contact: props.contact}}}>
+                <Link to={`/delete`} state={{contact: props.contact}}>
                     <i 
                         className="trash icon red" 
                         style={{ marginTop: "7px", float: "right", cursor: "pointer", marginLeft: "8px"}}
                     ></i>
                 </Link>
-                <Link to={{pathname:`/edit`, state:{contact: props.contact}}}>
+                <Link to={`/edit`} state={{contact: props.contact}}>
                     <i 
                         className="edit icon" 
                         style={{ marginTop: "7px", float: "right", cursor: "pointer"}}

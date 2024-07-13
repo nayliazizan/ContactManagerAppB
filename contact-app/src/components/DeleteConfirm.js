@@ -1,9 +1,15 @@
 import React from "react";
 import user from "../images/man.png"
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useContactCrud } from "../context/ContactsCrudContext";
 
 function DeleteConfirm(props) {
-    const {id, name, email} = props.location.state.contact;
+    const {removeContactHandler} = useContactCrud();
+    const deleteContact = (id) => {
+        removeContactHandler(id);
+    }
+    const location = useLocation();
+    const {id, name,email} = location.state.contact;
     return (
         <div className="main main-content">
             <div className="ui card centered">
@@ -24,7 +30,7 @@ function DeleteConfirm(props) {
             <div className="center-div" style={{ display: 'flex', justifyContent: 'center'}}>
                 
                 <div className="item">
-                    <Link to="/" onClick={() => props.clickHandler(id)}><button className="ui button red center">Yes</button></Link>
+                    <Link to="/" onClick={() => deleteContact(id)}><button className="ui button red center">Yes</button></Link>
                     <Link to="/"><button className="ui button blue center">No</button></Link>
                 </div>
             </div>

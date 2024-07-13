@@ -1,11 +1,18 @@
-import React, {useRef} from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import React, {useRef, useEffect} from "react";
+import { Link } from "react-router-dom";
 import ContanctCard from "./ContactCard";
+import { useContactCrud } from "../context/ContactsCrudContext";
 
 function ContanctList(props) {
+    const {contacts, retrieveContacts} = useContactCrud();
     const inputEl = useRef("");
+
+    useEffect(() => {
+        retrieveContacts();
+    }, [])
+
     //function that display each and every contact in contacts
-    const renderContactList = props.contacts.map((contact) => {
+    const renderContactList = contacts.map((contact) => {
         return (
             <ContanctCard 
                 contact={contact} 
