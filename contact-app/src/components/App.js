@@ -13,7 +13,13 @@ import EditContact from './EditContact';
 function App() {
   const LOCAL_STORAGE_KEY = "contacts"; //define local storage key for storing contacts
   //initialize state using useState for storing contacts
-  const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []); 
+
+  //getLocalStorageVariable ? JSON.parse(getLocalStorageVariable) : [] is used to check if getLocalStorageVariable 
+  //is not null. If it's not null, it means there's a valid JSON string in local storage, and it can be safely 
+  //parsed with JSON.parse. 
+  //If it is null, it initializes contacts with an empty array [].
+  const getLocalStorageVariable = localStorage.getItem(LOCAL_STORAGE_KEY);
+  const [contacts, setContacts] = useState(getLocalStorageVariable ? JSON.parse(getLocalStorageVariable) : []);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
