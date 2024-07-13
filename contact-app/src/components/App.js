@@ -14,6 +14,8 @@ function App() {
   const LOCAL_STORAGE_KEY = "contacts"; //define local storage key for storing contacts
   //initialize state using useState for storing contacts
   const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []); 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   //retrieve contacts
   const retrieveContacts = async () => {
@@ -49,6 +51,21 @@ function App() {
       return contact.id !== id;
     });
     setContacts(newContactList);
+  };
+
+  const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if(searchTerm !== ""){
+      const newContactList = contacts.filter((contact) => {
+        return Object.values(contact)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(newContactList);
+    } else {
+      setSearchResults(contacts);
+    }
   }
 
   // to let the page save the added contacts even after refresh page
@@ -74,7 +91,9 @@ function App() {
             render={(props) => (
               <ContactList 
                 {...props}
-                contacts={contacts}
+                contacts={searchTerm.length < 1 ? contacts : searchResults}
+                term={searchTerm}
+                searchKeyword={searchHandler}
               />
             )}
           />

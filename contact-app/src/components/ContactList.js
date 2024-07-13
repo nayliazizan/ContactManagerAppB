@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useRef} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import ContanctCard from "./ContactCard";
 
 function ContanctList(props) {
+    const inputEl = useRef("");
     //function that display each and every contact in contacts
     const renderContactList = props.contacts.map((contact) => {
         return (
@@ -13,6 +14,11 @@ function ContanctList(props) {
             />
         );
     });
+
+    const getSearchTerm = () => {
+        props.searchKeyword(inputEl.current.value);
+    }
+
     return (
         <div className="main main-content">
             <h2>
@@ -21,8 +27,21 @@ function ContanctList(props) {
                     <button className="ui right floated button blue"><i className="plus square icon"></i>Add</button>
                 </Link> 
             </h2>
+            <div className="ui search">
+                <div className="ui icon input">
+                    <input 
+                        ref={inputEl} 
+                        type="text" 
+                        placeholder="Search Contacts" 
+                        className="prompt" 
+                        value={props.term} 
+                        onChange={getSearchTerm}
+                    />
+                    <i className="search icon"></i>
+                </div>
+            </div>
             <div className="ui celled list">
-                {renderContactList}
+                {renderContactList.length > 0 ? renderContactList : "No Contacts Available"}
             </div>
         </div>
     );
