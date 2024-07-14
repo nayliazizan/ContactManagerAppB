@@ -3,7 +3,7 @@ import user from "../images/man.png"
 import { Link, useLocation } from "react-router-dom";
 import { useContactCrud } from "../context/ContactsCrudContext";
 
-function DeleteConfirm(props) {
+function DeleteConfirm() {
     const {removeContactHandler} = useContactCrud();
     const deleteContact = (id) => {
         removeContactHandler(id);

@@ -1,9 +1,10 @@
 import React from "react";
 import user from "../images/man.png"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-function ContanctDetail(props) {
-    const {name, email} = props.location.state.contact;
+function ContanctDetail() {
+    const location = useLocation();
+    const {name,email} = location.state.contact;
     return (
         <div className="main main-content">
             <div className="ui card centered">

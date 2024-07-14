@@ -8,7 +8,7 @@ function ContanctCard(props) {
         <div className="item">
                 <img className="ui avatar image" src={user} alt="user"/>
                 <div className="content">
-                    <Link to={{pathname:`contact/${id}`, state:{contact: props.contact}}}>
+                    <Link to={`contact/${id}`} state={{contact: props.contact}}>
                         <h3 className="header">{name}</h3>
                         <div>{email}</div>
                     </Link>

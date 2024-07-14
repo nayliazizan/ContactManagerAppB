@@ -3,27 +3,30 @@ import { Link } from "react-router-dom";
 import ContanctCard from "./ContactCard";
 import { useContactCrud } from "../context/ContactsCrudContext";
 
-function ContanctList(props) {
-    const {contacts, retrieveContacts} = useContactCrud();
+function ContanctList() {
+    const {contacts, retrieveContacts, searchHandler, searchTerm, searchResults} = useContactCrud();
     const inputEl = useRef("");
 
     useEffect(() => {
         retrieveContacts();
     }, [])
 
+    useEffect(() => {
+        searchHandler("");
+    }, [])
+
     //function that display each and every contact in contacts
-    const renderContactList = contacts.map((contact) => {
+    const renderContactList = (searchTerm.length < 1 ? contacts : searchResults).map((contact) => {
         return (
             <ContanctCard 
                 contact={contact} 
-
                 key={contact.id}
             />
         );
     });
 
     const getSearchTerm = () => {
-        props.searchKeyword(inputEl.current.value);
+        searchHandler(inputEl.current.value);
     }
 
     return (
@@ -41,7 +44,7 @@ function ContanctList(props) {
                         type="text" 
                         placeholder="Search Contacts" 
                         className="prompt" 
-                        value={props.term} 
+                        value={searchTerm} 
                         onChange={getSearchTerm}
                     />
                     <i className="search icon"></i>

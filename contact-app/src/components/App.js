@@ -1,7 +1,5 @@
 import './App.css';
-import React, { useState, useEffect} from 'react';
-
-import api from '../api/contacts';
+import React from 'react';
 import Header from "./Header";
 import AddContact from "./AddContact";
 import ContactList from "./ContactList";
@@ -12,32 +10,15 @@ import EditContact from './EditContact';
 import { ContactsCrudContext } from '../context/ContactsCrudContext';
 
 function App() {
-  const LOCAL_STORAGE_KEY = "contacts"; //define local storage key for storing contacts
+  //const LOCAL_STORAGE_KEY = "contacts"; //define local storage key for storing contacts
   //initialize state using useState for storing contacts
 
   //getLocalStorageVariable ? JSON.parse(getLocalStorageVariable) : [] is used to check if getLocalStorageVariable 
   //is not null. If it's not null, it means there's a valid JSON string in local storage, and it can be safely 
   //parsed with JSON.parse. 
   //If it is null, it initializes contacts with an empty array [].
-  const getLocalStorageVariable = localStorage.getItem(LOCAL_STORAGE_KEY);
-  const [contacts, setContacts] = useState(getLocalStorageVariable ? JSON.parse(getLocalStorageVariable) : []);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  const searchHandler = (searchTerm) => {
-    setSearchTerm(searchTerm);
-    if(searchTerm !== ""){
-      const newContactList = contacts.filter((contact) => {
-        return Object.values(contact)
-          .join(" ")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-      });
-      setSearchResults(newContactList);
-    } else {
-      setSearchResults(contacts);
-    }
-  }
+  //const getLocalStorageVariable = localStorage.getItem(LOCAL_STORAGE_KEY);
+  //const [contacts, setContacts] = useState(getLocalStorageVariable ? JSON.parse(getLocalStorageVariable) : []);
 
   return (
     <div className='ui container'>

@@ -14,8 +14,6 @@ export function ContactsCrudContext ({children}) {
         if(response.data) setContacts(response.data);
     };
 
-    
-
     const addContactHandler = async (contact) => {
         console.log(contact);
         const request = {
@@ -62,11 +60,12 @@ export function ContactsCrudContext ({children}) {
     const value = {
         contacts,
         retrieveContacts,
-        
         removeContactHandler,
         addContactHandler,
         updateContactHandler,
-        searchHandler
+        searchHandler,
+        searchTerm,
+        searchResults
     };
 
     return <contactsCrudContext.Provider value={value}>
