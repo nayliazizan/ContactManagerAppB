@@ -22,34 +22,39 @@ const AddContact = () => {
         navigate("/");
     }
 
-    
         return (
-            <div className="ui main main-content">
-                <h2>Add Contact</h2>
-                <form className="ui form" onSubmit={add}>
-                    <div className="field">
-                        <label>Name: </label>
-                        <input 
-                            type="text" 
-                            name="name" 
-                            placeholder="Name"
-                            value={name} 
-                            onChange={(e)=> setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="field">
-                        <label>Email: </label>
-                        <input 
-                            type="text" 
-                            name="email" 
-                            placeholder="Email"
-                            value={email} 
-                            onChange={(e)=> setEmail(e.target.value)}
-                        />
-                    </div>
-                    <button className="ui button blue" ><i className="plus square icon"></i>Add</button>
-                    <Link to="/"><button className="ui button blue center">Back to Home</button></Link>
-                </form>
+            <div className="ui piled segments" style={{margin: '80px'}}>
+                <div className='ui segment'>
+                    <h2>Add Contact</h2>
+                </div>
+                <div className='ui segment'>
+                    <form className="ui form" onSubmit={add}>
+                        <div className="field">
+                            <label>Name: </label>
+                            <input 
+                                type="text" 
+                                name="name" 
+                                placeholder="Name"
+                                value={name} 
+                                onChange={(e)=> setName(e.target.value)}
+                            />
+                        </div>
+                        <div className="field">
+                            <label>Email: </label>
+                            <input 
+                                type="text" 
+                                name="email" 
+                                placeholder="Email"
+                                value={email} 
+                                onChange={(e)=> setEmail(e.target.value)}
+                            />
+                        </div>
+                        <button className="ui button orange"><i className="plus square icon"></i>Add</button>
+                        <Link to="/"><button className="ui button orange center">Back to Home</button></Link>
+                    </form>
+                </div>
+                
+                
             </div>
         );
 }

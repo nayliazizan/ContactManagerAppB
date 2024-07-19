@@ -54,3 +54,7 @@ body {
 .item {
   background: rgba(255, 255, 255, 0.8);
 }
+
+.ui.segment {
+  background: rgba(119, 209, 227, 0.7);
+}
